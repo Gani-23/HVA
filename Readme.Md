@@ -1,51 +1,48 @@
-# HVA
+# MERN Application Documentation
 
-A Python project for keeping a website updated using PyGitHub.
+This documentation provides instructions for deploying a MERN (MongoDB, Express.js, React.js, Node.js) application on an AWS instance with Nginx routing. The frontend will be served on port 3000, while the backend will be served on port 3001. Additionally, we will configure an Application Load Balancer with a DNS name hosted on Cloudflare using a CNAME record.
 
-## Table of Contents
+## Prerequisites
+- AWS account
+- Cloudflare account
+- Domain name
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+## Step 1: Launch AWS Instance
+1. Log in to your AWS account.
+2. Navigate to the EC2 service.
+3. Launch a new instance, selecting an appropriate AMI and instance type.
+4. Configure security groups to allow inbound traffic on ports 3000 and 3001.
 
-## Introduction
+## Step 2: Install and Configure Nginx
+1. SSH into the AWS instance.
+2. Install Nginx using the package manager of your choice.
+3. Configure Nginx to proxy requests to the backend server running on port 3001.
+4. Configure Nginx to serve the frontend files from the appropriate directory.
 
-This project aims to automate the process of updating a website by utilizing the PyGitHub library. By leveraging the power of PyGitHub, developers can easily manage their website's content, such as adding new blog posts, updating pages, and more, directly from their Python code.
+## Step 3: Deploy Backend Server
+1. Clone your backend repository onto the AWS instance.
+2. Install the required dependencies using a package manager.
+3. Build and start the backend server using the appropriate commands.
 
-## Installation
+## Step 4: Deploy Frontend Application
+1. Clone your frontend repository onto the AWS instance.
+2. Install the required dependencies using a package manager.
+3. Build the frontend application using the appropriate commands.
+4. Copy the built files to the directory configured in Nginx.
 
-To use this project, you need to have Python installed on your system. Follow these steps to get started:
+## Step 5: Configure Cloudflare DNS
+1. Log in to your Cloudflare account.
+2. Navigate to the DNS settings for your domain.
+3. Add a CNAME record pointing to the DNS name of your AWS Application Load Balancer.
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
-2. Change into the project directory: `cd your-repo`
-3. Install the required dependencies: `pip install -r requirements.txt`
+## Step 6: Configure AWS Application Load Balancer
+1. Navigate to the EC2 service in your AWS account.
+2. Create a new Application Load Balancer.
+3. Configure the load balancer to listen on ports 80 and 443.
+4. Add the instances running your MERN application to the target group.
+5. Obtain the DNS name of the load balancer.
 
-## Usage
-
-To use this project, follow these steps:
-
-1. Import the necessary modules: `from pygithub import GitHub`
-2. Authenticate with your GitHub credentials: `github = GitHub(username, password)`
-3. Access the repository: `repo = github.get_repo(repo_name)`
-4. Update the website content using PyGitHub's API methods.
-5. Commit and push the changes to the repository.
-
-For detailed examples and usage instructions, please refer to the [documentation](https://link-to-documentation).
-
-## Contributing
-
-Contributions are welcome! If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/your-feature`
-3. Make your changes and commit them: `git commit -m 'Add your feature'`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Submit a pull request.
-
-Please make sure to follow the [code of conduct](https://link-to-code-of-conduct) and [contribution guidelines](https://link-to-contribution-guidelines).
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+## Step 7: Test and Verify
+1. Access your MERN application using the DNS name of the AWS Application Load Balancer.
+2. Verify that the frontend is served on port 3000 and the backend on port 3001.
+3. Test the functionality of your application to ensure it is working as expected.
